@@ -6,7 +6,7 @@
 
 		public void NovaConta()
 		{
-			Console.WriteLine("Conta corrente criado com sucesso!");
+			Console.WriteLine("Conta corrente criada com sucesso!");
 		}
 
 		public void CreditarSaldo(double valor)
