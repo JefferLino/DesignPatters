@@ -1,4 +1,9 @@
-﻿using AbstractFactory.JogoRpg.Enumeradores;
+﻿using AbstractFactory.EstacoesRadio.CriarRadio;
+using AbstractFactory.EstacoesRadio.Enumeradores;
+using AbstractFactory.EstacoesRadio.Factories.Classe;
+using AbstractFactory.EstacoesRadio.Factories.Interface;
+using AbstractFactory.EstacoesRadio.Online;
+using AbstractFactory.JogoRpg.Enumeradores;
 using AbstractFactory.JogoRpg.Factories.Classes.Alianca;
 using AbstractFactory.JogoRpg.Factories.Classes.Horda;
 using AbstractFactory.JogoRpg.Factories.Interfaces;
@@ -10,29 +15,67 @@ namespace AbstractFactory
 	{
 		static void Main(string[] args)
 		{
+			//var radioOnlineGospel = GetRadioOnlineApplication(TipoDaRadio.GOSPEL);
 
-			var heroAlianca = StartGameHeroPlayer(EnumHeros.DRUID, EnumFaccao.ALIANCA);
-			var heroHorda = StartGameHeroPlayer(EnumHeros.DWARF, EnumFaccao.HORDA);
+			//radioOnlineGospel.IniciarTocadarDeMusicaOnline();
+			//radioOnlineGospel.IniciarTocadorDePropagandaOnline();
 
-			heroAlianca.ExecuteAttack();
-			heroAlianca.ExecuteDefense();
+			//var radioOnlineSertanejo = GetRadioOnlineApplication(TipoDaRadio.SERTANEJO);
 
-			heroHorda.ExecuteAttack();
-			heroHorda.ExecuteDefense();
+			//radioOnlineSertanejo.IniciarTocadarDeMusicaOnline();
+			//radioOnlineSertanejo.IniciarTocadorDePropagandaOnline();
 
-			var enimieAlianca = StartGameEnemiePlayer(EnumEnemies.LADINO, EnumFaccao.ALIANCA);
-			var enimieHorada = StartGameEnemiePlayer(EnumEnemies.GLOBIN, EnumFaccao.HORDA);
+			//var radioOnlineRock = GetRadioOnlineApplication(TipoDaRadio.ROCK);
 
-			enimieAlianca.ExecuteAttack();
-			enimieAlianca.ExecuteDefense();
+			//radioOnlineRock.IniciarTocadarDeMusicaOnline();
+			//radioOnlineRock.IniciarTocadorDePropagandaOnline();
 
-			enimieHorada.ExecuteAttack();
-			enimieHorada.ExecuteDefense();
+			//var radioFm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.FM);
+
+			//radioFm.IniciarTocadorDeMusicaPorFrequencia();
+			//radioFm.IniciarTocadorDePropagandaPorFrequencia();
+
+			//var radioAm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.AM);
+
+			//radioAm.IniciarTocadorDeMusicaPorFrequencia();
+			//radioAm.IniciarTocadorDePropagandaPorFrequencia();
+
+			//var heroAlianca = StartGameHeroPlayer(EnumHeros.DRUID, EnumFaccao.ALIANCA);
+			//var heroHorda = StartGameHeroPlayer(EnumHeros.DWARF, EnumFaccao.HORDA);
+
+			//heroAlianca.ExecuteAttack();
+			//heroAlianca.ExecuteDefense();
+
+			//heroHorda.ExecuteAttack();
+			//heroHorda.ExecuteDefense();
+
+			//var enimieAlianca = StartGameEnemiePlayer(EnumEnemies.LADINO, EnumFaccao.ALIANCA);
+			//var enimieHorada = StartGameEnemiePlayer(EnumEnemies.GLOBIN, EnumFaccao.HORDA);
+
+			//enimieAlianca.ExecuteAttack();
+			//enimieAlianca.ExecuteDefense();
+
+			//enimieHorada.ExecuteAttack();
+			//enimieHorada.ExecuteDefense();
 
 			Console.ReadLine();
 		}
 
-		static StartGameHeroPlayer StartGameHeroPlayer(EnumHeros hero, EnumFaccao faccao) 
+		static RadioOnlineApplication GetRadioOnlineApplication(TipoDaRadio tipoDaRadio)
+		{
+			IRadioOnlineFactory radioOnlineFactory = new RadioOnlineFactory();
+
+			return new RadioOnlineApplication(radioOnlineFactory, tipoDaRadio);
+		}
+
+		static RadioPorFrequenciaApplication GetRadioPorFrequenciaApplication(TipoDeFrequencia tipoDeFrequencia)
+		{
+			IRadioPorFrequenciaFactory radioPorFrequenciaFactory = new RadioPorFrequenciaFactory();
+
+			return new RadioPorFrequenciaApplication(radioPorFrequenciaFactory, tipoDeFrequencia);
+		}
+
+		static StartGameHeroPlayer StartGameHeroPlayer(EnumHeros hero, EnumFaccao faccao)
 		{
 			IHeroFactory heroFactory = faccao switch
 			{
@@ -44,7 +87,7 @@ namespace AbstractFactory
 			return new StartGameHeroPlayer(heroFactory, hero);
 		}
 
-		static StartGameEnemiePlayer StartGameEnemiePlayer(EnumEnemies enemie, EnumFaccao faccao) 
+		static StartGameEnemiePlayer StartGameEnemiePlayer(EnumEnemies enemie, EnumFaccao faccao)
 		{
 			IEnemieFactory enemieFactory = faccao switch
 			{
