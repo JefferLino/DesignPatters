@@ -1,5 +1,4 @@
-﻿using AbstractFactory.Landvehicles;
-using AbstractFactory.Tranportes.Aircrafts;
+﻿using AbstractFactory.Tranportes.Aircrafts;
 using AbstractFactory.Tranportes.Landvehicles;
 
 namespace AbstractFactory.Tranportes.Factories
