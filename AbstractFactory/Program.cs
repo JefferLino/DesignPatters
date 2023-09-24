@@ -1,30 +1,59 @@
-﻿using AbstractFactory.Factories;
-using AbstractFactory.Tranportes.App;
-using AbstractFactory.Tranportes.Factories;
+﻿using AbstractFactory.JogoRpg.Enumeradores;
+using AbstractFactory.JogoRpg.Factories.Classes.Alianca;
+using AbstractFactory.JogoRpg.Factories.Classes.Horda;
+using AbstractFactory.JogoRpg.Factories.Interfaces;
+using AbstractFactory.JogoRpg.StartGame;
 
 namespace AbstractFactory
 {
-    internal class Program
+	internal class Program
 	{
 		static void Main(string[] args)
 		{
-			var app = ConfigureApplication("Lime");
-			app.StartRoute();
+
+			var heroAlianca = StartGameHeroPlayer(EnumHeros.DRUID, EnumFaccao.ALIANCA);
+			var heroHorda = StartGameHeroPlayer(EnumHeros.DWARF, EnumFaccao.HORDA);
+
+			heroAlianca.ExecuteAttack();
+			heroAlianca.ExecuteDefense();
+
+			heroHorda.ExecuteAttack();
+			heroHorda.ExecuteDefense();
+
+			var enimieAlianca = StartGameEnemiePlayer(EnumEnemies.LADINO, EnumFaccao.ALIANCA);
+			var enimieHorada = StartGameEnemiePlayer(EnumEnemies.GLOBIN, EnumFaccao.HORDA);
+
+			enimieAlianca.ExecuteAttack();
+			enimieAlianca.ExecuteDefense();
+
+			enimieHorada.ExecuteAttack();
+			enimieHorada.ExecuteDefense();
 
 			Console.ReadLine();
 		}
 
-		static Application ConfigureApplication(string companiaSelecionada)
+		static StartGameHeroPlayer StartGameHeroPlayer(EnumHeros hero, EnumFaccao faccao) 
 		{
-			ITransportFactory tranpostFactory = companiaSelecionada switch
+			IHeroFactory heroFactory = faccao switch
 			{
-				"Uber" => new UberTransport(),
-				"99" => new NineNineTransport(),
-				"Lime" => new LimeTransport(),
-				_ => new UberTransport(),
+				EnumFaccao.ALIANCA => new HeroAliancaPlayer(),
+				EnumFaccao.HORDA => new HeroHordaPlayer(),
+				_ => new HeroAliancaPlayer(),
 			};
 
-			return new Application(tranpostFactory);
+			return new StartGameHeroPlayer(heroFactory, hero);
+		}
+
+		static StartGameEnemiePlayer StartGameEnemiePlayer(EnumEnemies enemie, EnumFaccao faccao) 
+		{
+			IEnemieFactory enemieFactory = faccao switch
+			{
+				EnumFaccao.ALIANCA => new EnemieAliancaPlayer(),
+				EnumFaccao.HORDA => new EnemieHordaPlayer(),
+				_ => new EnemieAliancaPlayer(),
+			};
+
+			return new StartGameEnemiePlayer(enemieFactory, enemie);
 		}
 	}
 }
