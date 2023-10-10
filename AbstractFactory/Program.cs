@@ -25,20 +25,20 @@ namespace AbstractFactory
 			//radioOnlineSertanejo.IniciarTocadarDeMusicaOnline();
 			//radioOnlineSertanejo.IniciarTocadorDePropagandaOnline();
 
-			//var radioOnlineRock = GetRadioOnlineApplication(TipoDaRadio.ROCK);
+			var radioOnlineRock = GetRadioOnlineApplication(TipoDaRadio.ROCK);
 
-			//radioOnlineRock.IniciarTocadarDeMusicaOnline();
-			//radioOnlineRock.IniciarTocadorDePropagandaOnline();
+			radioOnlineRock.IniciarTocadarDeMusicaOnline();
+			radioOnlineRock.IniciarTocadorDePropagandaOnline();
 
-			//var radioFm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.FM);
+			var radioFm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.FM);
 
-			//radioFm.IniciarTocadorDeMusicaPorFrequencia();
-			//radioFm.IniciarTocadorDePropagandaPorFrequencia();
+			radioFm.IniciarTocadorDeMusicaPorFrequencia();
+			radioFm.IniciarTocadorDePropagandaPorFrequencia();
 
-			//var radioAm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.AM);
+			var radioAm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.AM);
 
-			//radioAm.IniciarTocadorDeMusicaPorFrequencia();
-			//radioAm.IniciarTocadorDePropagandaPorFrequencia();
+			radioAm.IniciarTocadorDeMusicaPorFrequencia();
+			radioAm.IniciarTocadorDePropagandaPorFrequencia();
 
 			//var heroAlianca = StartGameHeroPlayer(EnumHeros.DRUID, EnumFaccao.ALIANCA);
 			//var heroHorda = StartGameHeroPlayer(EnumHeros.DWARF, EnumFaccao.HORDA);
