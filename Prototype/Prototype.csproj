@@ -7,13 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Apis\Enumeradores\" />
-    <Folder Include="Apis\Fabrica\" />
-  </ItemGroup>
-
 </Project>

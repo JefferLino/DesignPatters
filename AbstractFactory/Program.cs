@@ -2,63 +2,81 @@
 using AbstractFactory.EstacoesRadio.Enumeradores;
 using AbstractFactory.EstacoesRadio.Factories.Classe;
 using AbstractFactory.EstacoesRadio.Factories.Interface;
-using AbstractFactory.EstacoesRadio.Online;
 using AbstractFactory.JogoRpg.Enumeradores;
 using AbstractFactory.JogoRpg.Factories.Classes.Alianca;
 using AbstractFactory.JogoRpg.Factories.Classes.Horda;
 using AbstractFactory.JogoRpg.Factories.Interfaces;
 using AbstractFactory.JogoRpg.StartGame;
+using AbstractFactory.StarCraft.Fabrica;
+using AbstractFactory.StarCraft.Interfaces.Fabrica;
 
 namespace AbstractFactory
 {
-	internal class Program
+    internal class Program
 	{
 		static void Main(string[] args)
 		{
-			//var radioOnlineGospel = GetRadioOnlineApplication(TipoDaRadio.GOSPEL);
+			IFabricaBases fabrica;
 
-			//radioOnlineGospel.IniciarTocadarDeMusicaOnline();
-			//radioOnlineGospel.IniciarTocadorDePropagandaOnline();
+            Console.Write("Escolha um dos personagens: 1 - Protoss | 2 - Zergs | 3 - Terranos: ");
 
-			//var radioOnlineSertanejo = GetRadioOnlineApplication(TipoDaRadio.SERTANEJO);
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    fabrica = new FabricaBaseProtoss();
+                    break;
+                case "2":
+                    fabrica = new FabricaBaseZerg();
+                    break;
+                case "3":
+                    fabrica = new FabricaBaseTerran();
+                    break;
+            }
 
-			//radioOnlineSertanejo.IniciarTocadarDeMusicaOnline();
-			//radioOnlineSertanejo.IniciarTocadorDePropagandaOnline();
+            //var radioOnlineGospel = GetRadioOnlineApplication(TipoDaRadio.GOSPEL);
 
-			var radioOnlineRock = GetRadioOnlineApplication(TipoDaRadio.ROCK);
+            //radioOnlineGospel.IniciarTocadarDeMusicaOnline();
+            //radioOnlineGospel.IniciarTocadorDePropagandaOnline();
 
-			radioOnlineRock.IniciarTocadarDeMusicaOnline();
-			radioOnlineRock.IniciarTocadorDePropagandaOnline();
+            //var radioOnlineSertanejo = GetRadioOnlineApplication(TipoDaRadio.SERTANEJO);
 
-			var radioFm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.FM);
+            //radioOnlineSertanejo.IniciarTocadarDeMusicaOnline();
+            //radioOnlineSertanejo.IniciarTocadorDePropagandaOnline();
 
-			radioFm.IniciarTocadorDeMusicaPorFrequencia();
-			radioFm.IniciarTocadorDePropagandaPorFrequencia();
+            //var radioOnlineRock = GetRadioOnlineApplication(TipoDaRadio.ROCK);
 
-			var radioAm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.AM);
+            //radioOnlineRock.IniciarTocadarDeMusicaOnline();
+            //radioOnlineRock.IniciarTocadorDePropagandaOnline();
 
-			radioAm.IniciarTocadorDeMusicaPorFrequencia();
-			radioAm.IniciarTocadorDePropagandaPorFrequencia();
+            //var radioFm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.FM);
 
-			//var heroAlianca = StartGameHeroPlayer(EnumHeros.DRUID, EnumFaccao.ALIANCA);
-			//var heroHorda = StartGameHeroPlayer(EnumHeros.DWARF, EnumFaccao.HORDA);
+            //radioFm.IniciarTocadorDeMusicaPorFrequencia();
+            //radioFm.IniciarTocadorDePropagandaPorFrequencia();
 
-			//heroAlianca.ExecuteAttack();
-			//heroAlianca.ExecuteDefense();
+            //var radioAm = GetRadioPorFrequenciaApplication(TipoDeFrequencia.AM);
 
-			//heroHorda.ExecuteAttack();
-			//heroHorda.ExecuteDefense();
+            //radioAm.IniciarTocadorDeMusicaPorFrequencia();
+            //radioAm.IniciarTocadorDePropagandaPorFrequencia();
 
-			//var enimieAlianca = StartGameEnemiePlayer(EnumEnemies.LADINO, EnumFaccao.ALIANCA);
-			//var enimieHorada = StartGameEnemiePlayer(EnumEnemies.GLOBIN, EnumFaccao.HORDA);
+            //var heroAlianca = StartGameHeroPlayer(EnumHeros.DRUID, EnumFaccao.ALIANCA);
+            //var heroHorda = StartGameHeroPlayer(EnumHeros.DWARF, EnumFaccao.HORDA);
 
-			//enimieAlianca.ExecuteAttack();
-			//enimieAlianca.ExecuteDefense();
+            //heroAlianca.ExecuteAttack();
+            //heroAlianca.ExecuteDefense();
 
-			//enimieHorada.ExecuteAttack();
-			//enimieHorada.ExecuteDefense();
+            //heroHorda.ExecuteAttack();
+            //heroHorda.ExecuteDefense();
 
-			Console.ReadLine();
+            //var enimieAlianca = StartGameEnemiePlayer(EnumEnemies.LADINO, EnumFaccao.ALIANCA);
+            //var enimieHorada = StartGameEnemiePlayer(EnumEnemies.GLOBIN, EnumFaccao.HORDA);
+
+            //enimieAlianca.ExecuteAttack();
+            //enimieAlianca.ExecuteDefense();
+
+            //enimieHorada.ExecuteAttack();
+            //enimieHorada.ExecuteDefense();
+
+            Console.ReadLine();
 		}
 
 		static RadioOnlineApplication GetRadioOnlineApplication(TipoDaRadio tipoDaRadio)

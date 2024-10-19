@@ -1,61 +1,77 @@
 ﻿using Builder.Casas.Builders;
 using Builder.Casas.Components;
-using Builder.Veiculos.Builders;
-using Builder.Veiculos.Directors;
-using System;
+using Builder.Jogos.MedalOfHonor.Classes;
+using Builder.Jogos.MedalOfHonor.Fabrica;
 
 namespace Builder
 {
-	internal class Program
+    internal class Program
 	{
 		static void Main(string[] args)
 		{
-			var casaPadrao = new CasaBuilder()
-								 .DefinirCorDaCasa("Azul")
-								 .DefinirQuantidadeDeQuartosDaCasa(5)
-								 .DefinirQuantidadeDeComodosDaCasa(7)
-								 .DefinirTipoDaCasa(TipoDaCasa.PADRAO)
-								 .ObterCasa();
+			var exercito = new Exercito();
+			CriadorDeSoldado criadorDeSoldado;
+			Soldado soldado;
 
-			Console.WriteLine($"Criado uma casa padrão na cor {casaPadrao.CorDaCasa} e com {casaPadrao.QuantidadeDeQuartos} quartos e {casaPadrao.QuantidadeDeComodos} comodos!");
+			criadorDeSoldado = new CriadorForcasEspeciais();
+			exercito.ConstruirSoldado(criadorDeSoldado);
 
-			var casaPadraoComJardim = new CasaBuilder()
-								          .DefinirCorDaCasa("Verde")
-								          .DefinirQuantidadeDeQuartosDaCasa(3)
-								          .DefinirQuantidadeDeComodosDaCasa(5)
-								          .DefinirTipoDaCasa(TipoDaCasa.PADRAO)
-										  .DefinirJardimDaCasa(new Jardim(15, "Esmeralda", 20))
-								          .ObterCasa();
+			soldado = criadorDeSoldado.ObterSoldado();
 
-			Console.WriteLine($"Criado uma casa padrão na cor {casaPadraoComJardim.CorDaCasa} e com {casaPadraoComJardim.QuantidadeDeQuartos} quartos e {casaPadraoComJardim.QuantidadeDeComodos} " +
-				              $"comodos e com jardim de {casaPadraoComJardim.Jardim.MetrosQuadrados} metros quadrados!");
+            Console.WriteLine("Soldado com as características: {0}, {1}, {2}",soldado.Arma, soldado.Transporte, soldado.Foco);
 
-			var casaPadraoComJardimEhPisicina = new CasaBuilder()
-										           .DefinirCorDaCasa("Verde")
-										           .DefinirQuantidadeDeQuartosDaCasa(3)
-										           .DefinirQuantidadeDeComodosDaCasa(5)
-										           .DefinirTipoDaCasa(TipoDaCasa.PADRAO)
-										           .DefinirJardimDaCasa(new Jardim(15, "Esmeralda", 20))
-												   .DefinirPiscinaDaCasa(new Piscina(1500, true))
-										           .ObterCasa();
+            criadorDeSoldado = new CriadorDeInfantariaLeve();
+            exercito.ConstruirSoldado(criadorDeSoldado);
 
-			Console.WriteLine($"Criado uma casa padrão na cor {casaPadraoComJardimEhPisicina.CorDaCasa} e com {casaPadraoComJardimEhPisicina.QuantidadeDeQuartos} quartos e {casaPadraoComJardimEhPisicina.QuantidadeDeComodos} " +
-							  $"comodos e com jardim de {casaPadraoComJardimEhPisicina.Jardim.MetrosQuadrados} metros quadrados e com piscina de {casaPadraoComJardimEhPisicina.Piscina.Litragem} litros!");
+            soldado = criadorDeSoldado.ObterSoldado();
+            Console.WriteLine("Soldado com as características: {0}, {1}, {2}", soldado.Arma, soldado.Transporte, soldado.Foco);
 
-			//var builder = new VehicleBuilder();
-			//var director = new Director(builder);
+            //var casaPadrao = new CasaBuilder()
+            //					 .DefinirCorDaCasa("Azul")
+            //					 .DefinirQuantidadeDeQuartosDaCasa(5)
+            //					 .DefinirQuantidadeDeComodosDaCasa(7)
+            //					 .DefinirTipoDaCasa(TipoDaCasa.PADRAO)
+            //					 .ObterCasa();
 
-			//director.ConstructSedanCar();
+            //Console.WriteLine($"Criado uma casa padrão na cor {casaPadrao.CorDaCasa} e com {casaPadrao.QuantidadeDeQuartos} quartos e {casaPadrao.QuantidadeDeComodos} comodos!");
 
-			//var sedan = builder.GetVehicle();
+            //var casaPadraoComJardim = new CasaBuilder()
+            //					          .DefinirCorDaCasa("Verde")
+            //					          .DefinirQuantidadeDeQuartosDaCasa(3)
+            //					          .DefinirQuantidadeDeComodosDaCasa(5)
+            //					          .DefinirTipoDaCasa(TipoDaCasa.PADRAO)
+            //							  .DefinirJardimDaCasa(new Jardim(15, "Esmeralda", 20))
+            //					          .ObterCasa();
 
-			//Console.WriteLine($"Criado um veículo do tipo: {sedan.VehicleType}");
+            //Console.WriteLine($"Criado uma casa padrão na cor {casaPadraoComJardim.CorDaCasa} e com {casaPadraoComJardim.QuantidadeDeQuartos} quartos e {casaPadraoComJardim.QuantidadeDeComodos} " +
+            //	              $"comodos e com jardim de {casaPadraoComJardim.Jardim.MetrosQuadrados} metros quadrados!");
 
-			//director.ConstructSedanTruck();
+            //var casaPadraoComJardimEhPisicina = new CasaBuilder()
+            //							           .DefinirCorDaCasa("Verde")
+            //							           .DefinirQuantidadeDeQuartosDaCasa(3)
+            //							           .DefinirQuantidadeDeComodosDaCasa(5)
+            //							           .DefinirTipoDaCasa(TipoDaCasa.PADRAO)
+            //							           .DefinirJardimDaCasa(new Jardim(15, "Esmeralda", 20))
+            //									   .DefinirPiscinaDaCasa(new Piscina(1500, true))
+            //							           .ObterCasa();
 
-			//var truck = builder.GetVehicle();
+            //Console.WriteLine($"Criado uma casa padrão na cor {casaPadraoComJardimEhPisicina.CorDaCasa} e com {casaPadraoComJardimEhPisicina.QuantidadeDeQuartos} quartos e {casaPadraoComJardimEhPisicina.QuantidadeDeComodos} " +
+            //				  $"comodos e com jardim de {casaPadraoComJardimEhPisicina.Jardim.MetrosQuadrados} metros quadrados e com piscina de {casaPadraoComJardimEhPisicina.Piscina.Litragem} litros!");
 
-			//Console.WriteLine($"Criado um caminhão do tipo: {truck.VehicleType}");
-		}
+            //var builder = new VehicleBuilder();
+            //var director = new Director(builder);
+
+            //director.ConstructSedanCar();
+
+            //var sedan = builder.GetVehicle();
+
+            //Console.WriteLine($"Criado um veículo do tipo: {sedan.VehicleType}");
+
+            //director.ConstructSedanTruck();
+
+            //var truck = builder.GetVehicle();
+
+            //Console.WriteLine($"Criado um caminhão do tipo: {truck.VehicleType}");
+        }
 	}
 }
